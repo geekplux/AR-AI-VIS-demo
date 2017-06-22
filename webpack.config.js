@@ -1,58 +1,66 @@
 const path = require('path');
+const webpack = require('webpack');
 const SRC = path.join(__dirname, 'src');
 const EXAMPLE = path.join(__dirname, 'examples');
 
 module.exports = {
   entry: {
-    html: path.join(EXAMPLE, 'index.html'),
     js: path.join(SRC, 'index.js')
   },
   output: {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.html$/,
-      loader: 'file?name=[name].[ext]'
+      use: 'file-loader?name=[name].[ext]'
     }, {
       test: /\.js$/,
       exclude: /node_modules/,
-      loaders: [
+      use: [
         'babel-loader',
         'eslint-loader'
       ]
     }, {
       test: /\.css$/,
-      loaders: [
+      use: [
         'style-loader',
         'css-loader?importLoaders=1',
         'postcss-loader'
       ]
     }, {
-      test: /\.json$/,
-      loader: 'json-loader'
-    }, {
       test: /\.(png|jpg|svg)$/,
-      loader: 'url?limit=80000'
+      use: 'url-loader?limit=80000'
+    }, {
+      test: require.resolve('tracking'),
+      use: 'imports-loader?this=>window'
     }]
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['.js'],
+    alias: {
+      'tracking-face': 'tracking/build/data/face.js'
+    }
   },
   devtool: 'evil-source-map',
   devServer: {
     contentBase: EXAMPLE,
     inline: true,
-    progress: true,
     stats: { color: true },
     port: 3000,
     host: '0.0.0.0',
     disableHostCheck: true
   },
-  postcss: function () {
-    return [
-      require('precss'),
-      require('autoprefixer')
-    ];
-  }
+  plugins: [
+    new webpack.ProvidePlugin({
+      tracking: 'tracking'
+    })
+  ]
+  // },
+  // postcss: function () {
+  //   return [
+  //     require('precss'),
+  //     require('autoprefixer')
+  //   ];
+  // }
 };
