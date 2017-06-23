@@ -10,6 +10,16 @@ Explore the AR world with AI and visualization.
 - npm start
 
 
+### Roadmap
+
+- [x] face tracking
+- [ ] face tracking mobile phone support
+- [ ] face recongnition (train by deeplearning framework [Keras](https://keras.io/))
+- [ ] network database
+- [ ] visualize network
+- [ ] render visualization into AR world
+
+
 ### LICENSE
 
 **AR AI VIS Demo** &copy; [GeekPlux](https://github.com/geekplux), Released under the [MIT](./LICENSE) License.
