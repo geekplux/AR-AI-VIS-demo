@@ -26,7 +26,17 @@ module.exports = {
       use: [
         'style-loader',
         'css-loader?importLoaders=1',
-        'postcss-loader'
+        {
+          loader: 'postcss-loader',
+          options: {
+            plugins: function () {
+              return [
+                require('precss'),
+                require('autoprefixer')
+              ];
+            }
+          }
+        }
       ]
     }, {
       test: /\.(png|jpg|svg)$/,
@@ -56,11 +66,4 @@ module.exports = {
       tracking: 'tracking'
     })
   ]
-  // },
-  // postcss: function () {
-  //   return [
-  //     require('precss'),
-  //     require('autoprefixer')
-  //   ];
-  // }
 };

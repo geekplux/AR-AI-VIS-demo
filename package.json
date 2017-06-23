@@ -1,7 +1,7 @@
 {
-  "name": "medical-ar-vis",
+  "name": "ar-ai-vis",
   "version": "0.0.1",
-  "description": "Medical AR VIS",
+  "description": "AR AI VIS demo",
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server  --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"

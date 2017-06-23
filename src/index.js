@@ -64,8 +64,12 @@ function fallback (e) {
 }
 
 function callback (stream) {
-  h1.innerHTML = '123';
+  h1.innerHTML = 'success';
 }
+
+/**
+ * face tracking
+ */
 
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
